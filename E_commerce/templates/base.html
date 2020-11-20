@@ -1,0 +1,158 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+
+
+      <title> E_commerce </title>
+      <style>
+          body{
+              background-color: whitesmoke;
+          }
+      </style>
+  </head>
+  <body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: black;">
+    <a class="navbar-brand" href="{% url 'index' %}" style="font-family: 'Grenze Gotisch', cursive; font-size:2.0em; color:whitesmoke;"> E_Commerce. </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width: 50%;">
+         <form class="form-inline my-2 my-lg-0 w-50">
+            <div class="input-group md-form form-sm form-2 pl-0 w-100">
+                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search" >
+            </div>
+        </form>
+        <ul class="navbar-nav mr-auto ml-4">
+
+            <li class="nav-item dropdown ml-4">
+            <a class="nav-link dropdown-toggle"  style="color: white;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                {% for x in cat_list %}
+                    <a class="dropdown-item" href="{% url 'prod_list' %}?prod_id={{ x.cat_id }}">{{ x.cat_name }}</a>
+                {% endfor %}
+
+            </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link ml-5" href="#" style="color: white"> Cart </a>
+            </li>
+
+            {% if user.is_authenticated %}
+
+{#            <li class="nav-item">#}
+{#                <a class="nav-link ml-5" style="color: white" href="{% url 'logout' %}">Logout</a>#}
+{#            </li>#}
+            <li class="nav-item dropdown ml-5">
+            <a class="nav-link dropdown-toggle"  style="color: white;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Name {{ name }} </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="nav-link" align="center" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-link" align="center" href="{% url 'logout' %}">Logout</a>
+            </div>
+            </li>
+{#            <li class="nav-item">#}
+{#                <p class="nav-link ml-5" style="color: white" > {{ name }}</p>#}
+{#            </li>#}
+
+            {% else %}
+
+            <li class="nav-item">
+                <a class="nav-link ml-5" href="{% url 'user_login' %}" style="color: white">Login</a>
+            </li>
+
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+    <!-- Navbar End -->
+
+    {% block body_block %}
+
+    {% endblock %}
+
+    {% block product %}
+    <!-- Category Images-->
+    <div class="container-fluid" align="center">
+            <h1 align="left" class="mt-4 ml-2"> Top Search Categories </h1>
+            <hr>
+
+            <div class="row">
+                {% for c in cat %}
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xsm-6 mt-2">
+                    <a href="{% url 'prod_list' %}?prod_id={{ c.cat_id }}">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" id="cat_box" style="height: 18rem;" src="{{ c.cat_img.url }}" alt="Card image cap">
+                              <div class="card-body">
+                                <h4 class="card-text cat_text"> {{ c.cat_name }} </h4>
+                              </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+    <!-- Category End-->
+
+    <!-- Products -->
+    <div class="container-fluid mt-4" align="center">
+        <h1 align="left" class="mt-4 ml-2"> Recently Added Product </h1>
+
+        <hr>
+        <div class="row">
+            {% for p in product %}
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xsm-6 mt-5">
+                <a href="{% url 'product' %}?prod_id={{ p.prod_id }}">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" id="cat_box" style="height: 18rem;" src="{{ p.prod_img.url }}" alt="Card image cap">
+                          <div class="card-body">
+                            <h6 class="card-text"> {{ p.prod_title }} </h6>
+                              <p>&#8377;{{ p.prod_discounted_price }}
+                              <small> <del>&#8377;{{ p.prod_original_price }}</del></small></p>
+                              <button type="button" class="btn btn-dark">Buy Now</button>
+                              <button type="button" class="btn btn-dark">Add To Cart</button>
+                          </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <!-- Products End -->
+    {% endblock %}
+
+    <footer class="footer">
+        <div class="container-fluid mt-5" align="center" style="height: 50px; background-color: black;">
+            <h3 style="color: white; margin-top: 25px;"> E-Commerce Footer</h3>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </body>
+</html>

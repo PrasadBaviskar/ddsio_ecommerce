@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+
+{% block body_block %}
+
+    <div class="jumbotrone" style="margin-top: 100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-12 col-xsm-12"></div>
+
+                <div class="col-lg-8 col-md-3 col-sm-12 col-xsm-12">
+                    <form method="post" action="#">
+                        {% csrf_token %}
+                        <table align="center">
+                    <tr> <td colspan="4"> <h3 style="color: chocolate;"> Personal Details </h3> <hr> </td> </tr>
+
+                    <tr>
+                        <td> <p class="ml-5"> First Name : </p> </td>
+                        <td> <p> <input class="ml-3" type="text" name="fnm" placeholder=" First Name" required> </p></td>
+
+                        <td> <p class="ml-5"> Last Name : </p> </td>
+                        <td> <p> <input class="ml-3" type="text" name="fnm" placeholder=" Last Name" required> </p></td>
+                    </tr>
+
+                    <tr>
+                        <td> <p class="ml-5"> Email ID : </p> </td>
+                        <td> <p> <input class="ml-3" type="email" name="fnm" placeholder=" Email address " required> </p></td>
+
+                        <td> <p class="ml-5"> Contact : </p> </td>
+                        <td> <p> <input class="ml-3" type="number" name="fnm" placeholder=" Contact Number" required> </p></td>
+                    </tr>
+
+                    <tr> <td colspan="4"> <h3 style="color: chocolate;"> Address Details</h3> <hr> </td> </tr>
+                    <tr>
+                        <td> <p class="ml-5"> Address Line : </p> </td>
+                        <td> <p> <input class="ml-3" type="text" name="fnm" placeholder=" building name/street " required> </p></td>
+
+                        <td> <p class="ml-5"> Locality : </p> </td>
+                        <td> <p> <input class="ml-3" type="text" name="fnm" placeholder=" area" required> </p></td>
+
+                    </tr>
+                    <tr>
+                        <td> <p class="ml-5"> Landmark : </p> </td>
+                        <td> <p> <input class="ml-3" type="text" name="fnm" placeholder=" Landmark"> </p></td>
+
+                        <td> <p class="ml-5"> Pincode : </p> </td>
+                        <td> <p> <input class="ml-3" type="number" name="fnm" placeholder=" Pincode" required> </p></td>
+                    </tr>
+
+                    <tr>
+                       <td> <p class="ml-5"> Taluka : </p> </td>
+                        <td> <p> <input class="ml-3" type="text" name="fnm" placeholder=" Taluka" required> </p></td>
+
+                        <td> <p class="ml-5"> District : </p> </td>
+                        <td> <p> <input class="ml-3" type="text" name="fnm" placeholder=" District" required> </p></td>
+                    </tr>
+
+                    <tr>
+                       <td> <p class="ml-5"> State : </p> </td>
+                       <td> <p> <input class="ml-3" type="text" name="fnm" placeholder=" Maharastra" readonly> </p></td>
+                    </tr>
+
+                    <tr><td colspan="4"> <button type="submit" class="btn btn-dark" >Save Details</button></td></tr>
+                </table>
+                    </form>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-12 col-xsm-12"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block product %}
+
+{% endblock %}
+
+
+

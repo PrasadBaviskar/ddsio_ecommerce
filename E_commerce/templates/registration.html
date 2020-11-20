@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <div class="jumbotron mt-5" align="center">
+        <form method="post">
+            {% csrf_token %}
+            <h3 class="mb-4">Register Here</h3>
+            {{ user_form.as_p }}
+            <input class="btn btn-dark" type="submit" value="Register">
+        </form>
+    </div>
+{% endblock %}
+
+{% block product %}
+
+{% endblock %}

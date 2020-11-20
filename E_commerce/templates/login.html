@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <div class="jumbotron mt-5" align="center">
+        <form method="post" action="{% url 'user_login' %}">
+            {% csrf_token %}
+            <h3 class="mb-1">Login Here</h3>
+
+            {% if msg %} <span style="color: red;"> {{ msg }} </span> {% endif %} <br>
+
+            <label for="username">Username : </label>
+            <input type="text" name="username" placeholder=" Enter Email"><br>
+
+            <label for="password">Password : </label>
+            <input type="password" name="password"><br>
+
+            <input type="submit"class="btn btn-dark" value="Login" style="margin-left: 80px; margin-top: 10px;"> <a class="ml-2 pt-2" href="{% url 'registration' %}"> New Registration </a>
+        </form>
+    </div>
+{% endblock %}
+
+{% block product %}
+
+{% endblock %}

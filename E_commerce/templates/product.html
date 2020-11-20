@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+    <style>
+        .mainimg{
+            height: 30rem;
+            width: 30rem;
+        }
+    </style>
+    <div class="container-fluid" style="margin-top: 100px; background-color: white;" >
+        <div class="row">
+            {% for p in data %}
+            <div class="col-lg-4">
+                <img class="mainimg" src="{{ p.prod_img.url }}">
+            </div>
+
+            <div class="col-lg-8">
+                <div class="container ml-2 mt-3">
+                    <h1 style="color: chocolate; font-family: 'Berlin Sans FB'; font-weight: lighter;"> {{ p.prod_title }} </h1>
+
+                    <b style="font-size: large;">&#8377;{{ p.prod_discounted_price }} <small> <del>&#8377;{{ p.prod_original_price }}</del></small></b>
+
+                    <p> {{ p.prod_desc }} </p>
+
+                    <button type="button" class="btn btn-dark">Buy Now</button>
+            <button type="button" class="btn btn-dark">Add To Cart</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block product %}
+
+{% endblock %}
